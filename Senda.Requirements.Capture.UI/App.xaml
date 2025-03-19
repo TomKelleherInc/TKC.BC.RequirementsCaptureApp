@@ -1,0 +1,41 @@
+﻿<Application x:Class="Senda.Requirements.Capture.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Senda.Requirements.Capture.UI"
+             xmlns:convert="clr-namespace:Senda.Requirements.Capture.UI.Converters"
+             DispatcherUnhandledException="App_DispatcherUnhandledException"
+              >
+    <Application.Resources>
+            <convert:EnumToString x:Key="appEnumToString"/>
+
+        <Style x:Key="windowBackgroundGradient" TargetType="{x:Type Window}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="-46.975" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FFFFE8CA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <EventTrigger RoutedEvent="Window.Loaded" x:Key="windowFadeIn">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
+                                From="0.0" To="1.0" Duration="0:0:1"
+                                AutoReverse="False"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+
+    </Application.Resources>
+</Application>

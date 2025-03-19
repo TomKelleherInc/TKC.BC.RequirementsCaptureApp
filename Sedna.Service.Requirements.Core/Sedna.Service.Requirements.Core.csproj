@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Sedna.Service.Requirements.Core</AssemblyName>
+    <RootNamespace>Sedna.Service.Requirements.Core</RootNamespace>
+  </PropertyGroup>
+
+</Project>

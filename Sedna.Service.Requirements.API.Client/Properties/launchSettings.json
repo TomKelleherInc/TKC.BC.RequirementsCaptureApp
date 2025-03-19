@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Sedna.Service.Requirements.API.Client": {
+      "commandName": "Project"
+    }
+  }
+}

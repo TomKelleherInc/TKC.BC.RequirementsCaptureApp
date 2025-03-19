@@ -1,0 +1,1402 @@
+openapi: 3.0.1
+info:
+  title: Sedna.Service.Requirements
+  version: v1
+paths:
+  /api/Contexts:
+    get:
+      tags:
+        - Contexts
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Context'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Context'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Context'
+    post:
+      tags:
+        - Contexts
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Context'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Context'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Context'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Context'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Context'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+  '/api/Contexts/{context_id}':
+    get:
+      tags:
+        - Contexts
+      parameters:
+        - name: context_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Context'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+    put:
+      tags:
+        - Contexts
+      parameters:
+        - name: context_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Context'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Context'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Context'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Context'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Contexts
+      parameters:
+        - name: context_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Context'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+  /v1/RequirementContexts:
+    get:
+      tags:
+        - RequirementContexts
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RequirementContext'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RequirementContext'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RequirementContext'
+    post:
+      tags:
+        - RequirementContexts
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+  '/v1/RequirementContexts/{requirement_context_id}':
+    get:
+      tags:
+        - RequirementContexts
+      parameters:
+        - name: requirement_context_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+    put:
+      tags:
+        - RequirementContexts
+      parameters:
+        - name: requirement_context_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RequirementContext'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - RequirementContexts
+      parameters:
+        - name: requirement_context_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RequirementContext'
+  /v1/Requirements:
+    get:
+      tags:
+        - Requirements
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Requirement'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Requirement'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Requirement'
+    post:
+      tags:
+        - Requirements
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+  '/v1/Requirements/{requirement_id}':
+    get:
+      tags:
+        - Requirements
+      parameters:
+        - name: requirement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+    put:
+      tags:
+        - Requirements
+      parameters:
+        - name: requirement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Requirement'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Requirements
+      parameters:
+        - name: requirement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Requirement'
+  /v1/Sources:
+    get:
+      tags:
+        - Sources
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Source'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+    post:
+      tags:
+        - Sources
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Source'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Source'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Source'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+  '/v1/Sources/{source_id}':
+    get:
+      tags:
+        - Sources
+      parameters:
+        - name: source_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Source'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+    put:
+      tags:
+        - Sources
+      parameters:
+        - name: source_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Source'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Source'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Source'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Sources
+      parameters:
+        - name: source_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Source'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+  '/v1/Sources/{external_identifier}/requirements':
+    get:
+      tags:
+        - Sources
+      parameters:
+        - name: external_identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Requirement'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Requirement'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Requirement'
+  '/v1/Sources/{external_identifier}':
+    get:
+      tags:
+        - Sources
+      parameters:
+        - name: external_identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Source'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+  /v1/SourceTypes:
+    get:
+      tags:
+        - SourceTypes
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceType'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceType'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceType'
+    post:
+      tags:
+        - SourceTypes
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+  '/v1/SourceTypes/{source_type_id}':
+    get:
+      tags:
+        - SourceTypes
+      parameters:
+        - name: source_type_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+    put:
+      tags:
+        - SourceTypes
+      parameters:
+        - name: source_type_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SourceType'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - SourceTypes
+      parameters:
+        - name: source_type_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SourceType'
+  /api/Subjects:
+    get:
+      tags:
+        - Subjects
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subject'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subject'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subject'
+    post:
+      tags:
+        - Subjects
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+  '/api/Subjects/{subject_id}/requirements':
+    get:
+      tags:
+        - Subjects
+      parameters:
+        - name: subject_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+  '/api/Subjects/{subject_id}':
+    get:
+      tags:
+        - Subjects
+      parameters:
+        - name: subject_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+    put:
+      tags:
+        - Subjects
+      parameters:
+        - name: subject_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Subject'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Subjects
+      parameters:
+        - name: subject_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+  /v1/Topics:
+    get:
+      tags:
+        - Topics
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    post:
+      tags:
+        - Topics
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Topic'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+  '/v1/Topics/{topic_id}':
+    get:
+      tags:
+        - Topics
+      parameters:
+        - name: topic_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Topic'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+    put:
+      tags:
+        - Topics
+      parameters:
+        - name: topic_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Topics
+      parameters:
+        - name: topic_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Topic'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+  /v1/TopicStrings:
+    get:
+      tags:
+        - TopicStrings
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TopicSearch'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TopicSearch'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TopicSearch'
+    post:
+      tags:
+        - TopicStrings
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+  '/v1/TopicStrings/{topic_string_id}':
+    get:
+      tags:
+        - TopicStrings
+      parameters:
+        - name: topic_string_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+    put:
+      tags:
+        - TopicStrings
+      parameters:
+        - name: topic_string_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TopicSearch'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - TopicStrings
+      parameters:
+        - name: topic_string_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TopicSearch'
+components:
+  schemas:
+    SourceType:
+      type: object
+      properties:
+        sourceTypeId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        source:
+          type: array
+          items:
+            $ref: '#/components/schemas/Source'
+          nullable: true
+      additionalProperties: false
+    Source:
+      type: object
+      properties:
+        sourceId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        sourceTypeId:
+          type: integer
+          format: int32
+          nullable: true
+        externalIdentifier:
+          type: string
+          nullable: true
+        sourceType:
+          allOf:
+            - $ref: '#/components/schemas/SourceType'
+          nullable: true
+        requirement:
+          type: array
+          items:
+            $ref: '#/components/schemas/Requirement'
+          nullable: true
+      additionalProperties: false
+    TopicContext:
+      type: object
+      properties:
+        topicContextId:
+          type: integer
+          format: int32
+        topicId:
+          type: integer
+          format: int32
+        contextId:
+          type: integer
+          format: int32
+        context:
+          allOf:
+            - $ref: '#/components/schemas/Context'
+          nullable: true
+        topic:
+          allOf:
+            - $ref: '#/components/schemas/Topic'
+          nullable: true
+      additionalProperties: false
+    TopicSearch:
+      type: object
+      properties:
+        topicSearchId:
+          type: integer
+          format: int32
+        topicId:
+          type: integer
+          format: int32
+          nullable: true
+        searchString:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        isWholeWord:
+          type: boolean
+        topic:
+          allOf:
+            - $ref: '#/components/schemas/Topic'
+          nullable: true
+      additionalProperties: false
+    Topic:
+      type: object
+      properties:
+        topicId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        preferredPhrasing:
+          type: string
+          nullable: true
+        requirement:
+          type: array
+          items:
+            $ref: '#/components/schemas/Requirement'
+          nullable: true
+        subjectTypeTopic:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubjectTypeTopic'
+          nullable: true
+        topicContext:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopicContext'
+          nullable: true
+        topicSearch:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopicSearch'
+          nullable: true
+      additionalProperties: false
+    SubjectTypeTopic:
+      type: object
+      properties:
+        subjectTypeTopicId:
+          type: integer
+          format: int32
+        subjectTypeId:
+          type: integer
+          format: int32
+        topicId:
+          type: integer
+          format: int32
+        subjectType:
+          allOf:
+            - $ref: '#/components/schemas/SubjectType'
+          nullable: true
+        topic:
+          allOf:
+            - $ref: '#/components/schemas/Topic'
+          nullable: true
+      additionalProperties: false
+    SubjectType:
+      type: object
+      properties:
+        subjectTypeId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        subject:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+          nullable: true
+        subjectTypeTopic:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubjectTypeTopic'
+          nullable: true
+      additionalProperties: false
+    Subject:
+      type: object
+      properties:
+        subjectId:
+          type: integer
+          format: int32
+        externalIdentifier:
+          type: string
+          nullable: true
+        subjectTypeId:
+          type: integer
+          format: int32
+        tag:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        subjectType:
+          allOf:
+            - $ref: '#/components/schemas/SubjectType'
+          nullable: true
+        requirement:
+          type: array
+          items:
+            $ref: '#/components/schemas/Requirement'
+          nullable: true
+      additionalProperties: false
+    Requirement:
+      type: object
+      properties:
+        requirementId:
+          type: integer
+          format: int32
+        sourceId:
+          type: integer
+          format: int32
+          nullable: true
+        sourceText:
+          type: string
+          nullable: true
+        sourceTextLocation:
+          type: string
+          nullable: true
+        preferredPhrasing:
+          type: string
+          nullable: true
+        topicId:
+          type: integer
+          format: int32
+          nullable: true
+        subjectId:
+          type: integer
+          format: int32
+        isActive:
+          type: boolean
+          nullable: true
+        reviewDt:
+          type: string
+          format: date-time
+          nullable: true
+        createdTs:
+          type: string
+          format: date-time
+          nullable: true
+        updatedTs:
+          type: string
+          format: date-time
+          nullable: true
+        createdUserId:
+          type: integer
+          format: int32
+          nullable: true
+        updatedUserId:
+          type: integer
+          format: int32
+          nullable: true
+        source:
+          allOf:
+            - $ref: '#/components/schemas/Source'
+          nullable: true
+        subject:
+          allOf:
+            - $ref: '#/components/schemas/Subject'
+          nullable: true
+        topic:
+          allOf:
+            - $ref: '#/components/schemas/Topic'
+          nullable: true
+        requirementContext:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequirementContext'
+          nullable: true
+      additionalProperties: false
+    RequirementContext:
+      type: object
+      properties:
+        requirementContextId:
+          type: integer
+          format: int32
+        requirementId:
+          type: integer
+          format: int32
+          nullable: true
+        contextId:
+          type: integer
+          format: int32
+          nullable: true
+        context:
+          allOf:
+            - $ref: '#/components/schemas/Context'
+          nullable: true
+        requirement:
+          allOf:
+            - $ref: '#/components/schemas/Requirement'
+          nullable: true
+      additionalProperties: false
+    Context:
+      type: object
+      properties:
+        contextId:
+          type: integer
+          format: int32
+        tag:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        requirementContext:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequirementContext'
+          nullable: true
+        topicContext:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopicContext'
+          nullable: true
+      additionalProperties: false

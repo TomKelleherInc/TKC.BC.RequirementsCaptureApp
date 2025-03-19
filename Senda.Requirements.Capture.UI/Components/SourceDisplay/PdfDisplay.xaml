@@ -1,0 +1,31 @@
+﻿<UserControl
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    
+        xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/pdf/themekeys"
+        xmlns:local="clr-namespace:Senda.Requirements.Capture.UI.Components.SourceDisplay"
+        xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf" 
+        x:Class="Senda.Requirements.Capture.UI.Components.SourceDisplay.PdfDisplay"
+        mc:Ignorable="d" 
+        d:DesignHeight="800"
+        d:DesignWidth="1000">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="{themes:PdfViewerThemeKey ResourceKey=PdfPresenterControlBackgroundBrush}" Color="Blue" />
+    </UserControl.Resources>
+
+
+    <dxpdf:PdfViewerControl x:Name="pdfViewer" CommandBarStyle="Bars"
+                            HighlightSelectionColor="#66dd4400"
+                            dx:ThemeManager.ThemeName="Office2019Colorful" ContinueSearchFrom="LastSearchResult"  >
+        <dxpdf:PdfViewerControl.CommandProvider>
+            <dxpdf:PdfCommandProvider>
+            </dxpdf:PdfCommandProvider>
+        </dxpdf:PdfViewerControl.CommandProvider>
+    </dxpdf:PdfViewerControl>
+
+  
+</UserControl>

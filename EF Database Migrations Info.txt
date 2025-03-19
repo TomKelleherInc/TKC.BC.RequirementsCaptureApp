@@ -1,0 +1,3 @@
+Useful guidance:
+https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=vs
+

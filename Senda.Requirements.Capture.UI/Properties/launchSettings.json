@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Senda.Requirements.Capture.UI": {
+      "commandName": "Project",
+      "commandLineArgs": "3UjUvQmLrLqdTG7CIhl0wJ2frRDLvMIEauqkVZ_g_C8_kGDGrCnzf64kT5O5FSHbb54TYmh2WL5hio4MVtj81E56hnIolf0UdG8NLOSF92dM8RZj3XdzioQ-NBAlQkXjbcu8ORd8tqQLxphS4zdARHao5VqFZ2a6mQcSFz6DWtvQkbVMmTrj6pc1P9hIULjwhnYzpny7mf68tGZw7IXKHNCKgfeY-p81u6nFHWDob3mNgJOVqeTKQr4OC_cY86oMA2E_StEjQOXQDxjqI2cdFDQh8nMCVAOhPVDNZIczX8bylZPS8YodBzx2qrv1IdFgJRZM7MpX3rt-rafw0H9TcQ OPP00404534",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

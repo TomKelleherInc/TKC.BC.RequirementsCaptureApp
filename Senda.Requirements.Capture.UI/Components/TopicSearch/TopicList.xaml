@@ -1,0 +1,19 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Senda.Requirements.Capture.UI.Components.TopicSearch"
+             xmlns:Components="clr-namespace:Senda.Requirements.Capture.UI.Components" x:Class="Senda.Requirements.Capture.UI.Components.TopicSearch.TopicList"
+             mc:Ignorable="d"  Width="225" MinWidth="225">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="5" >
+        <StackPanel x:Name="stackPanel">
+
+            <Components:TopicBox />
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+
+</UserControl>

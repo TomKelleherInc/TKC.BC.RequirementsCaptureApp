@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Senda.Requirements.Capture.UI.Components.TopicBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Senda.Requirements.Capture.UI.Components"
+             MinWidth="150"
+             mc:Ignorable="d"  
+             FontSize="11"
+             BorderBrush="WhiteSmoke"
+             BorderThickness="1"
+             >
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <LinearGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform Angle="-96.009" CenterY="0.5" CenterX="0.5"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </LinearGradientBrush.RelativeTransform>
+            <GradientStop Color="#7F60A8F6"/>
+            <GradientStop Color="#7FFFFFFF" Offset="1"/>
+        </LinearGradientBrush>
+
+    </UserControl.Background>
+    
+    <StackPanel Orientation="Vertical" >
+         
+        <Label   Content="[topic-title]" BorderThickness="0,0,0,2"  >
+            <Label.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="-90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF4C9DC0"/>
+                        <GradientStop Color="#33E7E7E7" Offset="1"/>
+                    </LinearGradientBrush>
+
+            </Label.BorderBrush>
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-90" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#7F4E84BD"/>
+                    <GradientStop Color="#7FFFFFFF" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+            <TextBlock Padding="5" TextWrapping="Wrap" ToolTip="Terms found in this document">
+                <Hyperlink ToolTip="My wonderful Term1">term1</Hyperlink>,
+                <Hyperlink ToolTip="An excellent Term2">term2</Hyperlink>,
+                <Hyperlink>term3</Hyperlink>, 
+                <Hyperlink>term4</Hyperlink>,
+                <Hyperlink>term5</Hyperlink>,
+                <Hyperlink>term6</Hyperlink>,
+                <Hyperlink Background="LightBlue">term7</Hyperlink>, 
+                <Hyperlink>term8</Hyperlink>,
+                <Hyperlink>term9</Hyperlink>,
+                <Hyperlink>term10</Hyperlink>
+            </TextBlock>
+        <Border BorderThickness="0,1,0,1" >
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-90" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF4C9DC0"/>
+                    <GradientStop Color="#33E7E7E7" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <StackPanel Orientation="Horizontal" >
+            <TextBlock Padding="5" Text="Search" />
+            <TextBox Width="96" Height="18" VerticalAlignment="Center" x:Name="txtSearch" />
+                <Button x:Name="btnSearchPrevious" Height="18" VerticalAlignment="Center" ToolTip="Search backwards" Padding="5,0" Margin="10,0,0,0">
+                    &lt;&lt;
+                </Button>
+                <Button x:Name="btnSearchNext" Height="18" VerticalAlignment="Center" ToolTip="Search forward" Padding="5,0" Margin="10,0,0,0">
+                    &gt;&gt;
+                </Button>
+            </StackPanel>
+        </Border>
+        <DockPanel Margin="5">
+            <TextBlock Text="Requirements captured: [3]" DockPanel.Dock="Left"/>
+            <TextBlock DockPanel.Dock="Right" TextAlignment="Right">
+                <Hyperlink x:Name="hyperlinkShowTopicRequirements">Show...</Hyperlink>
+            </TextBlock>
+        </DockPanel>
+
+
+
+
+    </StackPanel>
+</UserControl>

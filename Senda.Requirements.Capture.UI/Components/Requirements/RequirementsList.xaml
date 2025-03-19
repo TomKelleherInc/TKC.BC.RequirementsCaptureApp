@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Senda.Requirements.Capture.UI.Components.Requirements.RequirementsList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Senda.Requirements.Capture.UI.Components.Requirements"
+         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" 
+         xmlns:dto="clr-namespace:Sedna.Service.Requirements.DTO;assembly=Sedna.Service.Requirements.DTO"
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" 
+        xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxa:AccordionControl                  
+            x:Name="accordionRequirements" 
+                Background="#55ffffff"
+                SelectionUnit="SubItem"
+            MinWidth="200"
+            ItemsSource="{Binding Requirements}"
+            dx:ThemeManager.ThemeName="Office2019Colorful" 
+            >
+
+            <dxa:AccordionControl.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type dto:Subject}" 
+                       ItemsSource="{Binding Requirements}" >
+                <TextBlock Text="{Binding Name}"/>
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate DataType="{x:Type dto:Requirement}">
+                            <local:RequirementSummary />
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </dxa:AccordionControl.ItemTemplate>
+
+        </dxa:AccordionControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,84 @@
+﻿<Window x:Class="Senda.Requirements.Capture.UI.Popups.RequirementsDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Senda.Requirements.Capture.UI.Popups"
+        xmlns:vm="clr-namespace:Senda.Requirements.Capture.UI.Popups"
+        xmlns:dto="clr-namespace:Sedna.Service.Requirements.DTO;assembly=Sedna.Service.Requirements.DTO"
+        mc:Ignorable="d"
+        Title="Requirements Details" 
+        Height="433" Width="949"      
+        Style="{DynamicResource windowBackgroundGradient}"
+        WindowStartupLocation="CenterOwner"
+        Loaded="Window_Loaded"
+        >
+    <Window.Resources>
+        <Style TargetType="RowDefinition">
+
+        </Style>
+    </Window.Resources>
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="204.019"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Requirement Details" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" />
+        <TextBlock Text="How will this requirement be used?"  VerticalAlignment="Top" Margin="0,30,73,0"  FontWeight="Bold" HorizontalAlignment="Right"  />
+
+        <DockPanel LastChildFill="True" VerticalAlignment="Top" Margin="10,89,333,0" >
+            <Label x:Name="lblAllUpperCase" DockPanel.Dock="Right" MouseDown="PreferredPhrasingSetCase" Content="ABC" FontSize="10"  Margin="10,0,0,0" Cursor="Hand" ForceCursor="True" Foreground="Blue" />
+            <Label x:Name="lblAllMixedCase" DockPanel.Dock="Right" MouseDown="PreferredPhrasingSetCase" Content="Abc" FontSize="10"  Margin="10,0,0,0" Cursor="Hand" ForceCursor="True" Foreground="Blue"/>
+            <Label x:Name="lblAllLowerCase" DockPanel.Dock="Right" MouseDown="PreferredPhrasingSetCase" Content="abc" FontSize="10"  Margin="10,0,0,0" Cursor="Hand" ForceCursor="True"  Foreground="Blue"/>
+            <Label Content="_Phrasing"  Target="{Binding txtPreferredPhrasing}"  />
+        </DockPanel>
+        <Label Content="_Source text" Target="{Binding txtSourceText}" HorizontalAlignment="Left" Margin="11,17,0,0"  VerticalAlignment="Top" Grid.Row="1" />
+        <Label Content="Source _location" Target="{Binding txtSourceTextLocation}" Margin="0,17,420,0" Height="26" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Right" Width="92"   />
+        <Label Content="Sub_ject" Target="{Binding tbTopicName}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,25,0,0"  />
+        <Label Content="_Topic" Target="{Binding tbTopicName}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="351,25,0,0"  />
+
+
+        <ComboBox x:Name="cmbSubject" ItemsSource="{Binding Subjects, UpdateSourceTrigger=Explicit}" Height="25" VerticalAlignment="Top" 
+                  Margin="11,51,0,0" HorizontalAlignment="Left" Width="299" 
+                  SelectedValue="{Binding Path=Requirement.Subject , Mode=TwoWay}"                  
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding SubjectType.Name, StringFormat='{}{0}: '}"/>
+                        <TextBlock Text="{Binding Description}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cmbTopic" ItemsSource="{Binding Topics, UpdateSourceTrigger=Explicit}"  Height="26" VerticalAlignment="Top" 
+                  Margin="351,51,333,0" RenderTransformOrigin="0.5,0.5"
+                  DisplayMemberPath="Name"
+                  IsEnabled="{Binding HasItems, RelativeSource={RelativeSource Self}}"
+                  SelectedValue="{Binding Path=Requirement.Topic, Mode=TwoWay}"
+                  />
+
+        <TextBox x:Name="txtPreferredPhrasing" Text="{Binding Requirement.PreferredPhrasing, Mode=TwoWay, FallbackValue=preferred phrasing, UpdateSourceTrigger=Explicit}" TextWrapping="Wrap" Margin="11,116,333,0" Height="84" VerticalAlignment="Top"  AcceptsReturn="True"  />
+        <TextBox x:Name="txtSourceText" IsReadOnly="True" Background="#ffeeeeee"  Text="{Binding Requirement.SourceText, Mode=TwoWay, FallbackValue=source text, UpdateSourceTrigger=Explicit }"  TextWrapping="Wrap" Margin="11,48,333,50" Grid.Row="1"   />
+        <TextBox x:Name="txtSourceTextLocation" Background="#ffeeeeee" IsReadOnly="True" Text="{Binding Requirement.SourceTextLocation, Mode=TwoWay, FallbackValue=location, UpdateSourceTrigger=Explicit}" TextWrapping="Wrap" Margin="0,21,333,0" Height="22" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Right" Width="82"  />
+
+        <ListView x:Name="lvContexts" ItemsSource="{Binding CheckableContexts}"  Margin="0,51,10,50" HorizontalAlignment="Right" Width="262" Grid.RowSpan="2"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:RequirementsDetailVM+CheckableContext}">
+                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" Content="{Binding Context.Description}"   />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <Border BorderThickness="3" BorderBrush="#FFE2D1B5" Margin="0,25,297,50" Grid.RowSpan="2" HorizontalAlignment="Right" Width="3" />
+
+        <Button x:Name="btnCancel" Click="btnCancel_Click" Content="_Cancel" VerticalAlignment="Bottom" Margin="0,0,149,10" Height="20" IsCancel="True" Grid.Row="1" HorizontalAlignment="Right" Width="123" />
+        <Button x:Name="btnSave" Click="btnSave_Click" Content="_Save" VerticalAlignment="Bottom" Margin="0,0,10,10" Height="20"  HorizontalAlignment="Right" Width="109" Grid.Row="1"  />
+        <Button x:Name="btnDelete" Click="btnDelete_Click" Content="_Delete" Background="#FFFFC87E" VerticalAlignment="Bottom" Margin="0,0,333,10" Height="20" Grid.Row="1" HorizontalAlignment="Right" Width="75" />
+
+    </Grid>
+</Window>

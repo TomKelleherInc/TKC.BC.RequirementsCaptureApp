@@ -1,0 +1,353 @@
+﻿<Window xmlns:Requirements="clr-namespace:Senda.Requirements.Capture.UI.Components.Requirements"  xmlns:Opportunity="clr-namespace:Senda.Requirements.Capture.UI.Components.Opportunity"  xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Senda.Requirements.Capture.UI"
+        xmlns:vm="clr-namespace:Senda.Requirements.Capture.UI.VM"
+        xmlns:convert="clr-namespace:Senda.Requirements.Capture.UI.Converters"
+        xmlns:SourceDisplay="clr-namespace:Senda.Requirements.Capture.UI.Components.SourceDisplay" 
+        xmlns:TopicSearch="clr-namespace:Senda.Requirements.Capture.UI.Components.TopicSearch" 
+        x:Class="Senda.Requirements.Capture.UI.MainWindow"  
+         xmlns:dto="clr-namespace:Sedna.Service.Requirements.DTO;assembly=Sedna.Service.Requirements.DTO"
+         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" 
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" 
+        xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar" 
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        mc:Ignorable="d"
+        Title="Sedna Requirements Capture" Height="697" Width="1110" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Style="{DynamicResource windowBackgroundGradient}"
+        >
+
+    <Window.Resources>
+
+        <CollectionViewSource x:Key="cvsRequirementsSorted" Source="{Binding Requirements}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Topic.Name" Direction="Ascending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+
+        <convert:NullToFalseConverter x:Key="nullToFalseConverter" />
+        <convert:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" FalseValue="Collapsed" />
+
+        <!--#region Search Terms Left Sidebar Hierarchy items-->
+        <DataTemplate x:Key="searchString" >
+            <TextBlock x:Name="tbTopicSearch" 
+                       Visibility="Visible" 
+                       FontFamily="Courier New"
+                       FontSize="11"
+                       Text="{Binding SearchString, StringFormat='&#8220;{0}&#8221;'}" 
+                       ToolTip="{Binding Description}"
+                       TextTrimming="CharacterEllipsis"
+                       Width="175"
+                         >  
+            </TextBlock>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Visible}" Value="False">
+                    <Setter Property="Visibility" TargetName="tbTopicSearch" Value="Collapsed"/>
+                    <Setter Property="Height" TargetName="tbTopicSearch" Value="0"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <HierarchicalDataTemplate 
+            x:Key="hierTopic"
+            DataType="{x:Type dto:TopicSearch}" 
+            ItemsSource="{Binding TopicSearches}"
+            ItemTemplate="{StaticResource searchString}"
+            >
+            <TextBlock  Text="{Binding Name}" ToolTip="{Binding Description}" Margin="0,7,0,0"  TextTrimming="CharacterEllipsis">
+                <TextBlock.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="menuNewSearchTerm" Header="Add new search term..." Click="menuNewSearchTerm_Click" />
+                    </ContextMenu>
+                </TextBlock.ContextMenu>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate 
+            x:Key="hierSubjectType"
+            DataType="{x:Type dto:SubjectTypeTopic}" 
+            ItemsSource="{Binding Topics}"
+            ItemTemplate="{StaticResource hierTopic}"   
+            >
+            <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Padding="3">
+            <TextBlock Text="{Binding SubjectType.Name}" ToolTip="{Binding Description}"  Margin="0,17,0,0" TextTrimming="CharacterEllipsis">
+                <TextBlock.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="menuNewTopic" Header="Add new Topic..." Click="menuNewTopic_Click" />
+                    </ContextMenu>
+                </TextBlock.ContextMenu>
+            </TextBlock>
+            </Border>
+        </HierarchicalDataTemplate>
+    <!--#endregion-->
+
+
+        <!--#region Requirements Sidebar Hierarchy Stuff-->
+
+        <DataTemplate x:Key="hierRequirement">
+            <TextBlock Text="{Binding SearchString}" ToolTip="{Binding Description}" 
+                />
+        </DataTemplate>
+        <HierarchicalDataTemplate 
+            x:Key="hierRequirements"
+            DataType="{x:Type dto:Requirement}" 
+            ItemsSource="{Binding Topics}"
+            ItemTemplate="{StaticResource hierRequirement}"                  
+            >
+            <TextBlock x:Name="tbTopicTitle" Text="{Binding Name}" ToolTip="{Binding Description}" 
+                       MouseDown="tbTopicTitle_MouseDown"
+                       >
+
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+
+        <!--#endregion-->
+
+    </Window.Resources>
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110" MinHeight="90" MaxHeight="120" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" MinWidth="150" MaxWidth="300" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*"  />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="300" MinWidth="250" MaxWidth="350" />
+        </Grid.ColumnDefinitions>
+
+        <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" 
+                  Background="#FFE4D6C1"
+                  Height="5"
+                  Cursor="ScrollNS"
+                  HorizontalAlignment="Stretch"
+                  ResizeBehavior="PreviousAndNext"
+                 
+                  />
+
+        <GridSplitter Grid.Row="2" Grid.Column="1"  
+                      ResizeBehavior="PreviousAndNext"
+                  Background="#FFE4D6C1"
+                  Width="5"
+                  Cursor="ScrollWE"
+                  VerticalAlignment="Stretch"
+                  
+                  />
+        <GridSplitter Grid.Row="2" Grid.Column="3"   
+                      ResizeBehavior="PreviousAndNext"
+                  Background="#FFE4D6C1"
+                  Width="5"
+                  Cursor="ScrollWE"
+                  VerticalAlignment="Stretch"
+                      />
+
+        <!-- Header Row -->
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"  LastChildFill="True"  Background="#22333333">
+            <Button x:Name="btnSelectOpportunity"
+                DockPanel.Dock="Left" Width="105"  Margin="10,8" 
+                    
+                    Padding="9" Click="btnSelectOpportunity_Click" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF9EBC6"/>
+                        <GradientStop Color="#FFE7CA83" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Content>
+                    <TextBlock Text="Select an Opportunity" TextAlignment="Center" TextWrapping="Wrap" />
+                </Button.Content>
+            </Button>
+
+            <Opportunity:OpportunitySummary x:Name="oppSummary" 
+                                            DockPanel.Dock="Left"
+                                            Background="Transparent" 
+                                            HorizontalAlignment="Stretch"
+                                            DataContext="{Binding CurrentOpportunity}"
+                                            MinWidth="400" 
+                                            FontSize="14"
+                                            />
+
+
+        
+            <DockPanel  LastChildFill="True" Margin="0,0,10,10"  >
+                <TextBlock DockPanel.Dock="Top" Text="Opportunity Attachments (only PDFs can be displayed for now):" Margin="0,7,0,4"/>
+
+                <ComboBox x:Name="cmbAttachments" 
+                          SelectionChanged="cmbAttachments_SelectionChanged"
+                          ToolTip="Select an Attachment to collect requirements from it"
+                          ItemsSource="{Binding Attachments}"
+                           IsEnabled="{Binding Items.Count, ElementName=cmbAttachments}"
+                          Text="Select An Attachment"   
+                          
+                          >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Opportunity:AttachmentSummary HorizontalAlignment="Stretch" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </DockPanel>
+
+        </DockPanel>
+
+
+        <!--=== Middle Row ====-->
+
+        <!-- Left side -->
+        <DockPanel x:Name="dockLeftSidebar" Grid.Row="2" Grid.Column="0" LastChildFill="True" Background="#11444444" MinWidth="200" 
+                   IsEnabled="{Binding SelectedItem, ElementName=cmbAttachments, Converter={StaticResource nullToFalseConverter}}"
+
+                   >
+            <Border DockPanel.Dock="Top" BorderThickness="0,0,0,2" Margin="5" Padding="0,0,0,7"  BorderBrush="LightGray"  >
+                <TextBlock Text="Topics and Search terms"/>
+            </Border>
+            
+            <Border DockPanel.Dock="Top" BorderThickness="0,0,0,2" Margin="5,0" Padding="5,0,0,7"  BorderBrush="LightGray"  >
+                <CheckBox x:Name="chkShowOnlyFoundTerms" DockPanel.Dock="Top"
+                      IsChecked="{Binding ShowOnlyFoundTerms, Mode=TwoWay}"
+                      Content="Show only found terms"
+                      ToolTip="When checked, only the search terms that occur in the current document are displayed" />
+            </Border>
+
+
+
+            <dxa:AccordionControl          
+            x:Name="accordionSubjects" 
+            ItemsSource="{Binding SubjectTypeTopics}"
+            ItemTemplate="{StaticResource hierSubjectType}"
+            SelectionUnit="SubItem"
+            Width="{Binding ActualWidth, ElementName=dockLeftSidebar}"
+            BringSelectedItemIntoView="False"
+            Background="#55ffffff"
+            IsCollapseButtonVisible="False"
+            AutoExpandAllItems="True"
+            ExpandMode="MultipleOrNone"
+            dx:ThemeManager.ThemeName="Office2019Colorful" 
+            SelectedItemChanged="accordionSubjects_SelectedItemChanged"  
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                />
+
+        </DockPanel>
+
+
+        <!-- Center PDF Viewer panel and search controls-->
+
+        <DockPanel Grid.Row="2" Grid.Column="2" LastChildFill="True" >
+            <Border DockPanel.Dock="Top" BorderThickness="0,0,0,2" Margin="5" Padding="0,0,0,5" BorderBrush="LightGray"  >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Current search" x:Name="tbSearchForTerm" Margin="0,0,10,0" />
+                    <TextBox Width="200" Height="18" VerticalAlignment="Center" x:Name="txtSearch"  />
+                    <Button x:Name="btnSearchPrevious"  VerticalAlignment="Center" Width="75"
+                        ToolTip="Search backwards" Padding="5,0" Margin="10,0,0,0"
+                        Click="btnSearchPrevious_Click"
+                        >
+                        &lt; Previous
+                    </Button>
+                    <Button x:Name="btnSearchNext"   VerticalAlignment="Center" Width="75"
+                        ToolTip="Search forward" Padding="5,0" Margin="10,0,0,0"
+                        Click="btnSearchNext_Click"
+                        >
+                        Next &gt;
+                    </Button>
+                </StackPanel>
+            </Border>
+            <SourceDisplay:PdfDisplay x:Name="pdfDisplay" />
+        </DockPanel>
+
+
+
+        <!-- Right side "Requirements" panel -->
+        <DockPanel Grid.Column="4" Grid.Row="2" LastChildFill="True" Background="#11444444" >
+            <Border DockPanel.Dock="Top" BorderThickness="0,0,0,2" Margin="5" Padding="0,0,0,7"  BorderBrush="LightGray"  >
+                <TextBlock Text="Captured Requirements"/>
+            </Border>
+
+            <Button x:Name="btnCaptureRequirement" Click="btnCaptureRequirement_Click" DockPanel.Dock="Top" Content="Capture new requirement..." Height="30"/>
+
+
+            <Button x:Name="btnSaveRequirementsToClipboard" Click="btnSaveRequirementsToClipboard_Click" 
+                    Content="Save Requirements to Clipboard..." DockPanel.Dock="Bottom" Height="30"
+                    Cursor="Hand"
+                    IsEnabled="{Binding Items.Count, ElementName=lvRequirements}"
+                    />
+
+
+            <ListView x:Name="lvRequirements" ItemsSource="{Binding Source={StaticResource cvsRequirementsSorted} }" 
+                      HorizontalContentAlignment="Stretch" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      Margin="0"
+                      > 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Requirements:RequirementSummary EditLink_Clicked="RequirementSummary_EditLink_Clicked" MouseDoubleClick="RequirementSummary_MouseDoubleClick"  />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+                <!-- The big headers for this list, for the Line and Opp name -->
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Expander IsExpanded="True" >
+                                                <Expander.Header>
+                                                    <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Margin="4,0,0,0" Padding="4"
+                                                            Width="{Binding
+                                                            RelativeSource={RelativeSource
+                                                              Mode=FindAncestor,
+                                                              AncestorType={x:Type Expander}},
+                                                            Path=ActualWidth}"
+                                                            >
+                                                        <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}" />
+                                                    </Border>
+                                                </Expander.Header>
+                                                <ItemsPresenter Margin="20,0,0,0" />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+            </ListView>
+                
+
+        </DockPanel>
+
+
+        <!-- Status Bar Row-->
+        <DockPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="5" x:Name="stackBottomBar"  LastChildFill="False" 
+                   Background="#99dddddd">
+            <TextBlock DockPanel.Dock="Right" Text="© Brighton Cromwell, LLC" Margin="10,7" />
+
+            <TextBlock DockPanel.Dock="Right"  Margin="10,7">
+                <Hyperlink x:Name="hypLinkToServiceDesk" 
+                           Cursor="Hand"
+                           RequestNavigate="hypLinkToServiceDesk_RequestNavigate"
+                           ToolTip="Open browser to the Jira Service Desk screen to quickly enter an idea or issue about this tool"
+                           NavigateUri="http://jira.bcdevops.com/servicedesk/customer/portal/1/create/6">Submit a suggestion or issue</Hyperlink>
+            </TextBlock>
+
+        </DockPanel>
+
+    </Grid>
+</Window>
