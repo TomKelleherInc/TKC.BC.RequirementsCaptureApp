@@ -17,3 +17,50 @@ The design elements for this tool included:
 - When a piece of data was found and captured, the system would annotate the underlying PDF and save it back to the central repository.  The annotation would include the date, the person's name, the data collected and what it was for (e.g., "delivery-date").
 - The system needed to work with existing microservices and RFP database tools.
 
+# Technologies
+
+## Frontend
+
+- WPF "smart client"
+- DevExpress component library (especially for the PDF viewer functionality)
+- ClickOnce technology for easy deployment and updates
+
+## Backend
+
+- Postgres Database & Web API technology
+- Entity Framework for database access
+- Data Transport Objects (DTOs) for sharing data between front/back ends.
+
+
+# Projects
+
+## Sedna.Service.Requirements.API.Client.Test
+
+The initial framework for creating Unit Tests.  Work interrupted by Covid and other matters.
+
+## Sedna.Service.Requirements.API.Client
+
+
+## Sedna.Service.Requirements.API
+
+Backend API for interacting with other company microservices, and the frontend
+
+## Sedna.Service.Requirements.Core
+
+(Placeholder project that was never populated with code.)
+
+## Sedna.Service.Requirements.DTO
+
+Data Transport Objects, used as a reference by both the front/back ends.   Provided common language for communicating between APIs and front end.
+
+
+## Sedna.Web.Requirements.UI
+
+Abandoned attempt to code all this as a web interface.  Experimented for a few days with a library called "PDF.js" to read and annotate PDFs, but the display was inconsistent and any customization would have been time prohibitive.  
+
+Although we had a principle on the team to build all tools as web applications, we allowed this exception given the narrow and well-understood user population, the superiority of DevExpress's PDF viewer, and the easy updates 
+possible using ClickOnce deployment.
+
+## Senda.Requirements.Capture.UI
+
+The final UI layer, using DevExpress.
